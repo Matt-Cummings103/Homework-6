@@ -2,7 +2,6 @@ public class TreeNode<T>{
     private T element;
     private TreeNode<T> left;
     private TreeNode<T> right;
-    private String morseLetter = "";
 
     //O(1)
     public TreeNode(T element){
@@ -52,7 +51,7 @@ public class TreeNode<T>{
     //O(n)
     public String preorder(TreeNode<T> node){
         if (node == null){
-            return "Empty";
+            return "";
         }
         return node.getElement().toString() + " " + preorder(node.getLeft()) + " " + preorder(node.getRight());
     }
@@ -60,7 +59,7 @@ public class TreeNode<T>{
     //O(n)
     public String postorder(TreeNode<T> node){
         if (node == null){
-            return "Empty";
+            return "";
         }
        return postorder(node.getLeft()) + " " + postorder(node.getRight()) + " " + node.getElement().toString();
     }
@@ -110,11 +109,9 @@ public class TreeNode<T>{
                 return this.getLeft().isIn(target) || this.getRight().isIn(target);
             }
             else if (this.getRight() == null && this.getLeft() != null){
-                this.morseLetter = this.morseLetter + "o";
                 return this.getLeft().isIn(target);
             }
             else if (this.getRight() != null && this.getLeft() == null){
-                this.morseLetter = this.morseLetter + "-";
                 return this.getRight().isIn(target);
             }
             else{
@@ -123,13 +120,6 @@ public class TreeNode<T>{
         }
     }
 
-
-    public String morseString(T target){
-        isIn(target);
-        String morseWord = morseLetter;
-        morseLetter = "";
-        return morseWord;
-    }
     //O(1)
     public void insertLeft(T element){
         if (this.getLeft() == null){
